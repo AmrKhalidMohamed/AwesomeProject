@@ -3,10 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
-
 import HomeNavigation from './Component/Navigation/HomeNavigation';
-
-
 
 
 
