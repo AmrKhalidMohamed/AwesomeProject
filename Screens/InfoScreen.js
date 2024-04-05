@@ -9,7 +9,7 @@ export default function InfoScreen({props}) {
     const [rooms,setRooms]=useState([])
     
     const getRoomsAndCustomers = async () => {
-      const baseUrl = 'https://5128-154-178-181-57.ngrok-free.app';
+      const baseUrl = 'https://7e5f-154-178-181-57.ngrok-free.app';
     
       try {
         // Fetch rooms data
