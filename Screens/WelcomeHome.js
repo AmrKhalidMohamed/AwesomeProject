@@ -19,21 +19,55 @@ export default function WelcomeHome() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Lorem ipsum dolor</Text>
-        <Text style={styles.subtitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-        <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage} />
-        <Image source={require("../assets/images/Group 19.png")} style={styles.logo} />
+    <View style={styles.Viewstyle} >
+       
+      <View style={{marginTop:hP("4.5")}}>
+        <View >
+        <Text style={{color:"#ffff",fontSize:hP("4.5%"),fontWeight:"bold",fontFamily:"koh",marginLeft:"10%",}} >Lorem ipsum dolor</Text>
+        <Text style={{color:"#ffff",fontSize:hP("2.5%"),fontWeight:"bold",fontFamily:"koh",marginLeft:"10%",}} >Lorem ipsum dolor sit amet consectetur.</Text>
+        </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate("HomeTap")} style={styles.button}>
-          <Text style={styles.buttonText}>Book now</Text>
-        </TouchableOpacity>
+      
+     <Image source={require("../assets/images/Ellipse 2.png")} style={{position:"absolute",zIndex:-1, width:"80%" }}   /> 
+      <Image source={require("../assets/images/Group 19.png")} style={{width:"100%" }} />
+      <TouchableOpacity
+      onPress={()=>navigation.navigate("Home")}
+          style={{
+      
+       backgroundColor: "#9E44E6",
+      width:"50%"    , 
+        alignItems:"center",
+        marginLeft:"auto",
+        marginRight:"auto",
+        padding:10,
+        borderRadius:30,
+      marginBottom:"1%"
+       }}
+      >
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Gallery</Text>
-        </TouchableOpacity>
-      </View>
+          <Text style={{alignItems:"center",textAlign:"center",color:"#ffff",fontSize:20,fontWeight:"bold",}} >Book now</Text>
+        
+      </TouchableOpacity>
+      <TouchableOpacity
+       style={{
+      
+       backgroundColor: "#9E44E6",
+      width:"50%"    , 
+        alignItems:"center",
+        marginLeft:"auto",
+        marginRight:"auto",
+        padding:10,
+        borderRadius:30,
+        marginBottom:10
+       }}
+      >
+          <Text style={{alignItems:"center",textAlign:"center",color:"#ffff",fontSize:20,fontWeight:"bold", }} >Gallery</Text>
+         
+      </TouchableOpacity>
+  
+      
+    </View>
+     
     </View>
   );
 }
