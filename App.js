@@ -12,6 +12,9 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     'koh': require('./assets/fonts/KohSantepheap-Bold.ttf'),
+    'kohR': require('./assets/fonts/KohSantepheap-Regular.ttf'),
+    'interB': require('./assets/fonts/Inter-Bold.ttf'),
+    'interR': require('./assets/fonts/Inter-Regular.ttf')
   });
 
   const onLayoutRootView = useCallback(async () => {
