@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
+import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
 
 import Colors from '../Component/Colors';
 
@@ -11,6 +12,7 @@ export default function WelcomeHome() {
   // Load custom fonts
   const [loaded] = useFonts({
     koh: require('../assets/fonts/KohSantepheap-Bold.ttf'),
+    kohR: require('../assets/fonts/KohSantepheap-Regular.ttf'),
   });
 
   // Return early if fonts are not loaded
@@ -39,50 +41,62 @@ export default function WelcomeHome() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  viewStyle: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     backgroundColor: Colors.black,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
   },
   title: {
     color: '#ffffff',
-    fontSize: 40,
+    fontSize: hP('5%'),
     fontFamily: 'koh',
-    fontWeight: 'bold',
-    marginLeft: 20,
+    marginTop:'15%',
+    marginHorizontal: '5%',
   },
   subtitle: {
     color: '#ffffff',
-    fontSize: 20,
-    fontFamily: 'koh',
-    fontWeight: 'bold',
-    marginLeft: 20,
+    fontSize: hP('2.5%'),
+    fontFamily: 'kohR',
+    marginHorizontal: '5%',
   },
   backgroundImage: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
-    width: '80%',
+    width: '65%',
   },
   logo: {
     width: '90%',
-    position: 'relative',
-    right: -35,
+    position: 'absolute',
+    right: 0,
+    bottom: '7%'
   },
-  button: {
-    backgroundColor: "#9E44E6",
+
+  buttonsView: {
+    position: 'absolute',
+    bottom: '2%',
+    width: '100%',
+    alignItems: 'center',
+  },
+  button1: {
+    backgroundColor: Colors.main,
     width: "90%",
-    alignSelf: 'center',
     alignItems: "center",
-    padding: 10,
-    borderRadius: 30,
-    marginBottom: 10,
+    borderRadius: 25,
+    marginBottom: 9,
   },
+
+  button2: {
+    backgroundColor: "white",
+    width: "90%",
+    alignItems: "center",
+    borderRadius: 25,
+  },
+
   buttonText: {
-    color: "#ffff",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: hP('4.5%'),
+    padding: '1%',
+    fontFamily: 'inter',
+    fontWeight: 'bold'
   },
 });
