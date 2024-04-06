@@ -36,17 +36,17 @@ function HomeScreen(){
       )
      }}
      name='Home' component={InfoScreen} />
+        <Tab.Screen     name='location' component={Location}
+           options={{
+             tabBarIcon:({size,color})=>(
+               <Ionicons name="location" size={24} color="#9E44E6" />
+             )
+            }}
+        />
    <Tab.Screen     name='Book' component={Bookings} 
       options={{
         tabBarIcon:({size,color})=>(
-          <Ionicons name="calendar" size={24} color="#9E44E6" />
-        )
-       }}
-   />
-   <Tab.Screen     name='location' component={Location}
-      options={{
-        tabBarIcon:({size,color})=>(
-          <Entypo name="location-pin" size={24} color="#9E44E6" />
+          <Ionicons name="bookmark" size={24} color="#9E44E6" />
         )
        }}
    />

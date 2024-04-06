@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 25,
     marginBottom: 9,
+    elevation: 3,
   },
 
   button2: {
@@ -95,8 +96,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     fontSize: hP('4.5%'),
-    padding: '1%',
-    fontFamily: 'inter',
-    fontWeight: 'bold'
+    padding: '.5%',
+    fontFamily: 'interB',
   },
 });
