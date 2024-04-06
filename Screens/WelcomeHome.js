@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
+import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
 
 import Colors from '../Component/Colors';
 
@@ -11,6 +12,7 @@ export default function WelcomeHome() {
   // Load custom fonts
   const [loaded] = useFonts({
     koh: require('../assets/fonts/KohSantepheap-Bold.ttf'),
+    kohR: require('../assets/fonts/KohSantepheap-Regular.ttf'),
   });
 
   // Return early if fonts are not loaded
@@ -18,105 +20,90 @@ export default function WelcomeHome() {
     return null;
   }
 
-  return (
-    <View style={styles.Viewstyle} >
-       
-      <View style={{marginTop:hP("4.5")}}>
-        <View >
-        <Text style={{color:"#ffff",fontSize:hP("4.5%"),fontWeight:"bold",fontFamily:"koh",marginLeft:"10%",}} >Lorem ipsum dolor</Text>
-        <Text style={{color:"#ffff",fontSize:hP("2.5%"),fontWeight:"bold",fontFamily:"koh",marginLeft:"10%",}} >Lorem ipsum dolor sit amet consectetur.</Text>
-        </View>
+return (
+  <View style={styles.viewStyle} >
+      
+    <View style={{marginTop:hP("4.5")}}>
+      <View >
+        <Text style={styles.title} >Lorem ipsum dolor</Text>
+        <Text style={styles.subtitle} >Lorem ipsum dolor sit amet consectetur.</Text>
+      </View>
 
-      
-     <Image source={require("../assets/images/Ellipse 2.png")} style={{position:"absolute",zIndex:-1, width:"80%" }}   /> 
-      <Image source={require("../assets/images/Group 19.png")} style={{width:"100%" }} />
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Home")}
-          style={{
-      
-       backgroundColor: "#9E44E6",
-      width:"50%"    , 
-        alignItems:"center",
-        marginLeft:"auto",
-        marginRight:"auto",
-        padding:10,
-        borderRadius:30,
-      marginBottom:"1%"
-       }}
-      >
+      <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage}   /> 
+    </View>
+      <View style = {styles.logo}>
+        <Image source={require("../assets/images/Group 19.png")}/>
+      </View>
+      <View style = {styles.buttonsView}>
+        <TouchableOpacity onPress={()=>navigation.navigate("Home")} style={styles.button1}>
+            <Text style={[styles.buttonText, {color: 'white'}]} >Book now</Text>
+        </TouchableOpacity>
 
-          <Text style={{alignItems:"center",textAlign:"center",color:"#ffff",fontSize:20,fontWeight:"bold",}} >Book now</Text>
-        
-      </TouchableOpacity>
-      <TouchableOpacity
-       style={{
-      
-       backgroundColor: "#9E44E6",
-      width:"50%"    , 
-        alignItems:"center",
-        marginLeft:"auto",
-        marginRight:"auto",
-        padding:10,
-        borderRadius:30,
-        marginBottom:10
-       }}
-      >
-          <Text style={{alignItems:"center",textAlign:"center",color:"#ffff",fontSize:20,fontWeight:"bold", }} >Gallery</Text>
-         
-      </TouchableOpacity>
-  
-      
-    </View>
-     
-    </View>
+        <TouchableOpacity style={styles.button2}>
+            <Text style={[styles.buttonText, { color: Colors.main }]} >Gallery</Text>
+        </TouchableOpacity>
+      </View>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  viewStyle: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     backgroundColor: Colors.black,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
   },
   title: {
     color: '#ffffff',
-    fontSize: 40,
+    fontSize: hP('5%'),
     fontFamily: 'koh',
-    fontWeight: 'bold',
-    marginLeft: 20,
+    marginTop:'15%',
+    marginHorizontal: '5%',
   },
   subtitle: {
     color: '#ffffff',
-    fontSize: 20,
-    fontFamily: 'koh',
-    fontWeight: 'bold',
-    marginLeft: 20,
+    fontSize: hP('2.5%'),
+    fontFamily: 'kohR',
+    marginHorizontal: '5%',
   },
   backgroundImage: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
-    width: '80%',
+    width: '65%',
   },
   logo: {
     width: '90%',
-    position: 'relative',
-    right: -35,
+    position: 'absolute',
+    right: 0,
+    bottom: '7%'
   },
-  button: {
-    backgroundColor: "#9E44E6",
+
+  buttonsView: {
+    position: 'absolute',
+    bottom: '2%',
+    width: '100%',
+    alignItems: 'center',
+  },
+  button1: {
+    backgroundColor: Colors.main,
     width: "90%",
-    alignSelf: 'center',
     alignItems: "center",
-    padding: 10,
-    borderRadius: 30,
-    marginBottom: 10,
+    borderRadius: 25,
+    marginBottom: 9,
   },
+
+  button2: {
+    backgroundColor: "white",
+    width: "90%",
+    alignItems: "center",
+    borderRadius: 25,
+  },
+
   buttonText: {
-    color: "#ffff",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: hP('4.5%'),
+    padding: '1%',
+    fontFamily: 'inter',
+    fontWeight: 'bold'
   },
 });

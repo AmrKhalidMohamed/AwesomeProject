@@ -14,6 +14,7 @@ import Location from '../../Screens/Location'
 
 import InfoScreen from '../../Screens/InfoScreen'
 import Rooms from '../../Screens/Rooms'
+import Colors from '../Colors';
 
 
 
@@ -35,7 +36,7 @@ function HomeScreen(){
    
      options={{
       tabBarIcon:({size,color})=>(
-        <Entypo name="home" size={25} color="#9E44E6" />
+        <Entypo name="home" size={25} color = {Colors.main }/>
       )
      }}
      name='Home' component={InfoScreen} />
@@ -69,7 +70,7 @@ export default function HomeNavigation() {
     >
       <Stack.Screen 
       
-       name='home'  component={WelcomeHome}  />
+       name='welcomeHome'  component={WelcomeHome}  />
       <Stack.Screen  name='Home'  component={HomeScreen}  />
       <Stack.Screen  name='room'  component={Rooms}  />
     </Stack.Navigator>)

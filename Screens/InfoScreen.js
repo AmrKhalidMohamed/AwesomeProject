@@ -1,8 +1,6 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
 
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import Colors from '../Component/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
@@ -24,7 +22,7 @@ const navigation=useNavigation()
              <TouchableOpacity
              style={{
               padding:hp("1.5"),
-              borderRadius:"100%",
+              borderRadius: 100,
               width:hp("6"),
               marginLeft:hp("2"),
              backgroundColor: "#9E44E6",

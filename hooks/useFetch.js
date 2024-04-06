@@ -17,7 +17,8 @@ const useFetch = (endPoint) => {
     setIsLoading(true);
     try {
       const response = await axios.request(options);
-      setData(response.data);
+      setData(response.data.data
+            );
     } catch (error) {
       setError(error);
       alert('There was an error');
