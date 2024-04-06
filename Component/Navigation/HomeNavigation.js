@@ -1,17 +1,10 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs' 
-
-import { Ionicons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-
+import { Ionicons, Entypo } from '@expo/vector-icons';
 import WelcomeHome from '../../Screens/WelcomeHome'
-
-
 import Bookings from '../../Screens/Bookings'
 import Location from '../../Screens/Location'
-
 import InfoScreen from '../../Screens/InfoScreen'
 import Rooms from '../../Screens/Rooms'
 import Colors from '../Colors';
