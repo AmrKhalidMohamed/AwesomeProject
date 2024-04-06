@@ -20,23 +20,30 @@ export default function WelcomeHome() {
     return null;
   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Lorem ipsum dolor</Text>
-        <Text style={styles.subtitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-        <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage} />
-        <Image source={require("../assets/images/Group 19.png")} style={styles.logo} />
+return (
+  <View style={styles.viewStyle} >
+      
+    <View style={{marginTop:hP("4.5")}}>
+      <View >
+        <Text style={styles.title} >Lorem ipsum dolor</Text>
+        <Text style={styles.subtitle} >Lorem ipsum dolor sit amet consectetur.</Text>
+      </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate("HomeTap")} style={styles.button}>
-          <Text style={styles.buttonText}>Book now</Text>
+      <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage}   /> 
+    </View>
+      <View style = {styles.logo}>
+        <Image source={require("../assets/images/Group 19.png")}/>
+      </View>
+      <View style = {styles.buttonsView}>
+        <TouchableOpacity onPress={()=>navigation.navigate("Home")} style={styles.button1}>
+            <Text style={[styles.buttonText, {color: 'white'}]} >Book now</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Gallery</Text>
+        <TouchableOpacity style={styles.button2}>
+            <Text style={[styles.buttonText, { color: Colors.main }]} >Gallery</Text>
         </TouchableOpacity>
       </View>
-    </View>
+  </View>
   );
 }
 
