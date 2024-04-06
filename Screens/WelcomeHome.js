@@ -3,12 +3,8 @@ import React from 'react'
 import { useFonts } from 'expo-font'
 
 import Colors from '../Component/Colors';
-import {  heightPercentageToDP as hP } from 'react-native-responsive-screen';
+import {  heightPercentageToDP as hP, widthPercentageToDP as wP} from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
-
-
-
-
 
 
 
@@ -32,7 +28,7 @@ export default function WelcomeHome() {
           style={{
       
        backgroundColor: "#9E44E6",
-      width:"50%"    , 
+      width:wP("50%" )   , 
         alignItems:"center",
         marginLeft:"auto",
         marginRight:"auto",
@@ -49,7 +45,7 @@ export default function WelcomeHome() {
        style={{
       
        backgroundColor: "#9E44E6",
-      width:"50%"    , 
+       width:wP("50%" )   , 
         alignItems:"center",
         marginLeft:"auto",
         marginRight:"auto",
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
     Viewstyle:{
         backgroundColor:Colors.black,
         height:"100%",
-        width:"auto"
+        width:"100%"
         
     },
     

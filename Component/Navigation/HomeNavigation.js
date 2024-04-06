@@ -13,7 +13,8 @@ import Bookings from '../../Screens/Bookings'
 import Location from '../../Screens/Location'
 
 import InfoScreen from '../../Screens/InfoScreen'
-import Rooms from '../../Screens/Rooms'
+import Rooms from '../../Screens/Form'
+import Form from '../../Screens/Form';
 
 
 
@@ -74,7 +75,7 @@ export default function HomeNavigation(props) {
       
        name='home'  component={WelcomeHome}  />
       <Stack.Screen  name='Home'  component={HomeScreen}  />
-      <Stack.Screen  name='room'  component={Rooms}  />
+      <Stack.Screen  name='form'  component={Form}  />
     </Stack.Navigator>)
    }
       

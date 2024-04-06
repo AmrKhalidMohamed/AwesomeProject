@@ -23,10 +23,11 @@ const navigation=useNavigation()
              
              <TouchableOpacity
              style={{
-              padding:hp("1.5"),
-              borderRadius:"100%",
+              padding:hp("1"),
+              borderRadius:100,
               width:hp("6"),
               marginLeft:hp("2"),
+              marginTop:hp("2"),
              backgroundColor: "#9E44E6",
              alignItems:"center"
              
@@ -37,10 +38,10 @@ const navigation=useNavigation()
              />
              </TouchableOpacity>
 
-           <ScrollView>
+           <ScrollView >
            <Text style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%"}}>Lorem ipsum dolor sit amet consectetur.</Text>
               <TouchableOpacity
-              onPress={()=>navigation.navigate("room")}
+              onPress={()=>navigation.navigate("form")}
               >
                 <Image  source={require('../assets/images/game.jpg')} style={{
                   height:hp("35%"),
