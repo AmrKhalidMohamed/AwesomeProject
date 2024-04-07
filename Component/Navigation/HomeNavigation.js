@@ -6,8 +6,8 @@ import WelcomeHome from '../../Screens/WelcomeHome'
 import Bookings from '../../Screens/Bookings'
 import Location from '../../Screens/Location'
 import InfoScreen from '../../Screens/InfoScreen'
-import Rooms from '../../Screens/Form'
-import Form from '../../Screens/Form';
+import firstForm from '../../Screens/FirstForm';
+import secondForm from '../../Screens/SecondForm';
 import Colors from '../Colors';
 
 
@@ -17,21 +17,15 @@ const Tab = createBottomTabNavigator();
 
 function HomeScreen(){
   return(
-   <Tab.Navigator 
-  
-   screenOptions={{
-    
-    headerShown:false
-    
-   }}
-
+   <Tab.Navigator
+   screenOptions={{headerShown:false}}
    >
      <Tab.Screen  
    
      options={{
       tabBarIcon:({size,color})=>(
         <Entypo name="home" size={25} color = {Colors.main }/>
-      )
+      ),
      }}
      name='Home' component={InfoScreen} />
         <Tab.Screen     name='location' component={Location}
@@ -65,10 +59,10 @@ export default function HomeNavigation(props) {
     }}
     >
       <Stack.Screen 
-      
        name='welcomeHome'  component={WelcomeHome}  />
       <Stack.Screen  name='Home'  component={HomeScreen}  />
-      <Stack.Screen  name='form'  component={Form}  />
+      <Stack.Screen  name='firstForm'  component={firstForm}  />
+      <Stack.Screen  name='secondForm'  component={secondForm}  />
     </Stack.Navigator>)
    }
       

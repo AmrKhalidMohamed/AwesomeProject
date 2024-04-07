@@ -39,7 +39,7 @@ const navigation=useNavigation()
            <ScrollView >
            <Text style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%"}}>Lorem ipsum dolor sit amet consectetur.</Text>
               <TouchableOpacity
-              onPress={()=>navigation.navigate("form")}
+              onPress={()=>navigation.navigate("firstForm")}
               >
                 <Image  source={require('../assets/images/game.jpg')} style={{
                   height:hp("35%"),
