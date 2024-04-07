@@ -6,7 +6,8 @@ import WelcomeHome from '../../Screens/WelcomeHome'
 import Bookings from '../../Screens/Bookings'
 import Location from '../../Screens/Location'
 import InfoScreen from '../../Screens/InfoScreen'
-import Rooms from '../../Screens/Rooms'
+import Rooms from '../../Screens/Form'
+import Form from '../../Screens/Form';
 import Colors from '../Colors';
 
 
@@ -52,7 +53,9 @@ function HomeScreen(){
   ) 
   }
 
-export default function HomeNavigation() {
+
+export default function HomeNavigation(props) {
+  
   return (
   
   <Stack.Navigator
@@ -65,7 +68,7 @@ export default function HomeNavigation() {
       
        name='welcomeHome'  component={WelcomeHome}  />
       <Stack.Screen  name='Home'  component={HomeScreen}  />
-      <Stack.Screen  name='room'  component={Rooms}  />
+      <Stack.Screen  name='form'  component={Form}  />
     </Stack.Navigator>)
    }
       

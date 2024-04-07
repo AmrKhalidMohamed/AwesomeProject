@@ -46,7 +46,6 @@ return (
   </View>
   );
 }
-
 const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
