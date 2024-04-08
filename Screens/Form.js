@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import Colors from '../Component/Colors'
 import { heightPercentageToDP as hP, widthPercentageToDP as wP,} from 'react-native-responsive-screen'
 import axios from "axios"
+import { useNavigation } from '@react-navigation/native';
 
 export default function Form() {
+
+   const navigation=useNavigation()
 
   const [formData, setFormData] = useState({
     // Initialize state for form data
@@ -65,6 +68,7 @@ export default function Form() {
             />
             <TouchableOpacity
             onPress={handleSubmit}
+            
             >
               <Text
               style={{
@@ -81,10 +85,13 @@ export default function Form() {
       marginBottom:"1%",
       fontSize:hP(2.5),
       marginTop:hP(10) 
+    
               }}
               >submit</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+            
+            >
 
               
               <Text

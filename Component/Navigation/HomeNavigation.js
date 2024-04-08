@@ -13,8 +13,10 @@ import Bookings from '../../Screens/Bookings'
 import Location from '../../Screens/Location'
 
 import InfoScreen from '../../Screens/InfoScreen'
-import Rooms from '../../Screens/Form'
+
 import Form from '../../Screens/Form';
+
+import ELMalapScreen from '../../Screens/ELMalapScreen';
 
 
 
@@ -76,6 +78,7 @@ export default function HomeNavigation(props) {
        name='home'  component={WelcomeHome}  />
       <Stack.Screen  name='Home'  component={HomeScreen}  />
       <Stack.Screen  name='form'  component={Form}  />
+      <Stack.Screen  name='malab'  component={ELMalapScreen} />
     </Stack.Navigator>)
    }
       

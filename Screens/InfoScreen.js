@@ -67,7 +67,9 @@ const navigation=useNavigation()
               }}
                 >10 Available Rooms</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+            
+              >
                 <Image  source={require('../assets/images/game.jpg')} style={{
                   height:hp("35%"),
                   width:wp("95%"),
