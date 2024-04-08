@@ -42,7 +42,7 @@ export default function Form() {
     // All validations passed, submit the form
     const response = await axios.post(`${baseUrl}/api/customers`, formData);
     console.log('Response:', response.data);
-    navigation.navigate('secondForm')
+    navigation.navigate('SecondForm')
   } catch (error) {
     console.error('Error:', error);
     // Handle error

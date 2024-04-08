@@ -26,7 +26,7 @@ export default function InfoScreen() {
 
       <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur.</Text>
       <ScrollView>
-        <TouchableOpacity style = {styles.card} onPress={() => navigation.navigate("firstForm")}>
+        <TouchableOpacity style = {styles.card} onPress={() => navigation.navigate("FirstForm")}>
         <ImageBackground source={require('../assets/images/card1.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >
