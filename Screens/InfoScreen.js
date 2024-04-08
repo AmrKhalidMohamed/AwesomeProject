@@ -1,109 +1,115 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native'
-
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { heightPercentageToDP as hP, widthPercentageToDP as wP } from 'react-native-responsive-screen';
 import Colors from '../Component/Colors';
-import { Ionicons } from '@expo/vector-icons';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
-
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function InfoScreen() {
-
-const navigation=useNavigation()
+  const navigation = useNavigation();
 
   return (
-    <SafeAreaView  style={{backgroundColor:Colors.black,
-      height:hp("100%"),
-      width:wp("100%"),
-      marginTop:"auto",
-      flex:1
-      }} >
-             
-             <TouchableOpacity
-             style={{
-              padding:hp("1"),
-              borderRadius:100,
-              width:hp("6"),
-              marginLeft:hp("2"),
-              marginTop:hp("2"),
-             backgroundColor: "#9E44E6",
-             alignItems:"center"
-             
-            }}
-             >
-             <Ionicons name="arrow-back" size={24} color="#ffff" 
-             onPress={()=>navigation.goBack("")}
-             />
-             </TouchableOpacity>
+    <View style={{ backgroundColor: Colors.black, height: hP("100%"), width: wP("100%"), marginTop: "auto", flex: 1 }}>
+      <TouchableOpacity onPress={()=>navigation.goBack()}
+      style={{
+      padding: '2.5%',
+      borderRadius: 100,
+      width: hP('5.5%'),
+      marginHorizontal: '4%',
+      marginTop: '10%',
+      backgroundColor: Colors.main,
+      alignItems:"center"
+      }}
+      >
+      <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
+      </TouchableOpacity>
 
-           <ScrollView >
-           <Text style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%"}}>Lorem ipsum dolor sit amet consectetur.</Text>
-              <TouchableOpacity
-              onPress={()=>navigation.navigate("firstForm")}
-              >
-                <Image  source={require('../assets/images/game.jpg')} style={{
-                  height:hp("35%"),
-                  width:wp("95%"),
-                  marginLeft:hp("1"),
-                  marginRight:hp("2"),
-                  marginBottom:hp("3"),
-                  zIndex:-1
+      <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur.</Text>
+      <ScrollView>
+        <TouchableOpacity style = {styles.card} onPress={() => navigation.navigate("firstForm")}>
+        <ImageBackground source={require('../assets/images/card1.jpg')} style={styles.cardImage}
+          imageStyle={{ borderRadius: 12}}
+        >
+          <LinearGradient
+            colors={['transparent', 'rgba(158, 68, 229, .5)']}
+            style={styles.gradient}
+          >
+          <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
+          <Text style={styles.cardTitle}>El Malaap 1</Text>
+          <Text style={styles.cardSubTitle}>10 available rooms</Text>
+          </LinearGradient>
+        </ImageBackground>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.card}>
+        <ImageBackground source={require('../assets/images/card2.jpg')} style={styles.cardImage}
+          imageStyle={{ borderRadius: 12}}
+        >
+          <LinearGradient
+            colors={['transparent', 'rgba(158, 68, 229, .5)']}
+            style={styles.gradient}
+          >
+          <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
+          <Text style={styles.cardTitle}>El Malaap 2</Text>
+          <Text style={styles.cardSubTitle}>Coming soon</Text>
+          </LinearGradient>
+        </ImageBackground>
+        </TouchableOpacity>
+      </ScrollView>
 
-                }} />
-                <Text
-                style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%",
-              position:"absolute",
-              top:hp("20%")
-              
-              }}
-                >El-Malaab 1</Text>
-                <Text
-                style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%",
-              position:"absolute",
-              top:hp("25%")
-              
-              }}
-                >10 Available Rooms</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image  source={require('../assets/images/game.jpg')} style={{
-                  height:hp("35%"),
-                  width:wp("95%"),
-                  marginLeft:hp("1"),
-                  marginRight:hp("2"),
-                  
-                  zIndex:-1
-
-                }} />
-                <Text   style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%",
-              position:"absolute",
-              top:hp("20%")
-              
-              }}>
-                  El-Malaab 2
-                </Text>
-                <Text   style={{color:"#ffff",fontSize:hp('3.5%'),fontWeight:"bold",fontFamily:"koh",marginLeft:"5%",marginBottom:"5%",
-              position:"absolute",
-              top:hp("25%")
-              
-              }}>
-                  Comming Soon..!!!
-                </Text>
-              </TouchableOpacity>
-           </ScrollView>
-            
-          
-            
-           
-          
-        
-             
-              <Image source={require("../assets/images/Ellipse 2.png")} style={{position:"absolute",height:"100%",zIndex:-1, width:"100%" }}   /> 
-        
-        
-          
-        
-      
-    </SafeAreaView>
-  )
+      <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage} />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: "#ffff",
+    fontSize: hP('3.5%'),
+    fontFamily: "kohR",
+    marginHorizontal: "5%",
+    marginVertical: "4%"
+  },
+  card: {
+    width: '90%',
+    height: 326,
+    borderRadius: 12,
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    marginBottom: '5%',
+  },
+  cardImage: {
+    justifyContent: 'center',
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  cardTitle: {
+    fontFamily: 'interB',
+    fontSize: 32,
+    color: 'white',
+    position: 'absolute',
+    bottom: '40%',
+    marginLeft: '5%',
+  },
+  gradient: {
+    justifyContent: 'center',
+    width: '100%',
+    height: '50%',
+    position: 'absolute',
+    bottom: 0,
+    borderRadius: 12
+  },
+  cardSubTitle: {
+    color: 'white',
+    fontSize: 15,
+    fontFamily: 'interR',
+    position: 'absolute',
+    bottom: '25%',
+    marginLeft: '5%',
+  },
+  backgroundImage: {
+    position: "absolute",
+    bottom: '5%',
+    zIndex: -2,
+    width: '65%',
+  }
+});

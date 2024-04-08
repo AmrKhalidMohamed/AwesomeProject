@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '../Component/Colors'
+import KeyboardDismiss from '../Component/keyboardDismiss'
 import { heightPercentageToDP as hP, widthPercentageToDP as wP,} from 'react-native-responsive-screen'
 import axios from "axios"
 import { useNavigation } from '@react-navigation/native';
@@ -18,25 +19,25 @@ export default function Form() {
 
   const handleSubmit = async () => {
   try{
-    if (!formData.name.trim()) {
-      alert('Please enter your name.');
-      return;
-    }
+    // if (!formData.name.trim()) {
+    //   alert('Please enter your name.');
+    //   return;
+    // }
 
-    if (!formData.phone_number.trim()) {
-      alert('Please enter your phone number.');
-      return;
-    }
+    // if (!formData.phone_number.trim()) {
+    //   alert('Please enter your phone number.');
+    //   return;
+    // }
 
-    if (!/^\d+$/.test(formData.phone_number.trim())) {
-      alert('Please enter a valid phone number.');
-      return;
-    }
+    // if (!/^\d+$/.test(formData.phone_number.trim())) {
+    //   alert('Please enter a valid phone number.');
+    //   return;
+    // }
 
-    if (formData.phone_number.trim().length < 10 || formData.phone_number.trim().length > 12) {
-      alert('Please enter a valid number.');
-      return;
-    }
+    // if (formData.phone_number.trim().length < 10 || formData.phone_number.trim().length > 12) {
+    //   alert('Please enter a valid number.');
+    //   return;
+    // }
 
     // All validations passed, submit the form
     const response = await axios.post(`${baseUrl}/api/customers`, formData);
@@ -53,6 +54,7 @@ export default function Form() {
 
   
 return (
+<KeyboardDismiss>
 <View
     style={{backgroundColor:Colors.black,
     height:hP("100%"),
@@ -121,6 +123,7 @@ return (
         
           
 </View>
+</KeyboardDismiss>
   )
 }
 const styles = StyleSheet.create({
