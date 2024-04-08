@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'https://3ab0-45-242-122-1.ngrok-free.app'; 
+const baseUrl = 'https://7e5f-154-178-181-57.ngrok-free.app'; 
 
 const useFetch = (endPoint) => {
   const [data, setData] = useState(1);
@@ -17,8 +17,11 @@ const useFetch = (endPoint) => {
     setIsLoading(true);
     try {
       const response = await axios.request(options);
-      console.log(response.data)
-      setData(response.data.data);
+      if (endPoint == `rooms/1/images`||endPoint == `images`){
+        setData(response.data);
+      }else{
+        setData(response.data.data);
+      } 
     } catch (error) {
       setError(error);
       alert('There was an error');
@@ -29,8 +32,7 @@ const useFetch = (endPoint) => {
 
   useEffect(() => {
     fetchData();
-  }, []); 
-
+  }, []);
   return { data, isLoading, error };
 };
 
