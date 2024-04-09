@@ -15,7 +15,7 @@ export default function Form() {
     phone_number: 'phone_number',
   });
 
-  const baseUrl = 'https://7e5f-154-178-181-57.ngrok-free.app';
+  const baseUrl = 'https://832c-45-242-16-109.ngrok-free.app';
 
   const handleSubmit = async () => {
   try{
