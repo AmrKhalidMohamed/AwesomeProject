@@ -4,7 +4,7 @@ import Colors from '../Component/Colors'
 import KeyboardDismiss from '../Component/keyboardDismiss'
 import { heightPercentageToDP as hP, widthPercentageToDP as wP,} from 'react-native-responsive-screen'
 import axios from "axios"
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Form() {
@@ -18,7 +18,8 @@ export default function Form() {
   const [formStartTime, setFormStartTime] = useState("Time")
   const [formEndTime, setFormEndTime] = useState("Time")
   const [timeFormNumber, setTimeFormNumber] = useState(1)
-  
+  const route = useRoute()
+  const {customerId} = route.params
   const togglePicker = ()=>{
     setShow (!show)
   }
@@ -36,34 +37,39 @@ export default function Form() {
       if (Platform.OS === 'android') {
         togglePicker();
         if (mode === 'time') {
-          if (timeFormNumber == 2) {
-            setEndTime(currentDate);
-            setFormEndTime(formatTime(currentDate));
+          if (timeFormNumber === 2) {
+            //setEndTime(currentDate);
+            handleChange('formEndTime', formatTime(currentDate)); // Update endTime in formData
           } else {
             setStartTime(currentDate);
-            setFormStartTime(formatTime(currentDate));
+            handleChange('formStartTime', formatTime(currentDate)); // Update startTime in formData
           }
-        }else {
-          setFormDate(formatDate(currentDate));
+        } else {
+          //setFormDate(currentDate)
+          handleChange('formDate', formatDate(currentDate)); // Update date in formData
         }
       }
     } else {
       togglePicker();
     }
   };
+  
   const confirmIos = () => {
     if (mode === 'time') {
       if (timeFormNumber == 2) {
         setFormEndTime(formatTime(date));
+        handleChange('formEndTime', formatTime(date))
         setEndTime(date);
       } else {
         setFormStartTime(formatTime(date));
+        handleChange('formStartTime', formatTime(date))
         setStartTime(date);
       }
     }else {
       setFormDate(formatDate(date))
-      togglePicker()
-    } 
+      handleChange('formDate', formatDate(date))
+    }
+    togglePicker()
   }
   const formatDate = (rawDate) => {
     let date = new Date(rawDate)
@@ -84,54 +90,44 @@ export default function Form() {
     hours = hours < 10 ? `0${hours}` :hours
     minutes = minutes < 10 ? `0${minutes}` :minutes
 
-    return `${hours}:${minutes}`
+    return `${hours}:${minutes}:00`
   }
   
   const navigation=useNavigation()
 
+  // Step 1: State Management
   const [formData, setFormData] = useState({
-    // Initialize state for form data
-    name: 'name',
-    phone_number: 'phone_number',
+    formDate: '',
+    formStartTime: '',
+    formEndTime: '',
+    numberOfPeople: '',
+  });
+  
+  const [errors, setErrors] = useState({
+    date: '',
+    startTime: '',
+    endTime: '',
+    numberOfPeople: '',
   });
 
-  const baseUrl = 'https://7e5f-154-178-181-57.ngrok-free.app';
+// Step 2: Input Handling
+const handleChange = (key, value) => {
+  setFormData(prevState => ({
+    ...prevState,
+    [key]: value,
+  }));
+};
 
-  const handleSubmit = async () => {
-  try{
-    if (!formData.name.trim()) {
-      alert('Please enter your name.');
-      return;
-    }
-
-    if (!formData.phone_number.trim()) {
-      alert('Please enter your phone number.');
-      return;
-    }
-
-    if (!/^\d+$/.test(formData.phone_number.trim())) {
-      alert('Please enter a valid phone number.');
-      return;
-    }
-
-    if (formData.phone_number.trim().length < 10 || formData.phone_number.trim().length > 12) {
-      alert('Please enter a valid number.');
-      return;
-    }
-
-    // All validations passed, submit the form
-    const response = await axios.post(`${baseUrl}/api/customers`, formData);
-    console.log('Response:', response.data);
-    // Handle success
-  } catch (error) {
-    console.error('Error:', error);
-    // Handle error
-  } finally{
-    navigation.navigate('secondForm')
+// Step 4: Submission Handling
+const handleSubmit = () => {
+  if (formData.formDate === 'Date' || formData.formStartTime === 'Time' || formData.formEndTime === 'Time' || timeFormNumber < 1 || !formData.numberOfPeople || formData.numberOfPeople < 1 || formData.formEndTime <= formData.formStartTime){
+  // If any required field is not selected, number of people is less than 1, or number of people is not provided, show an alert
+    alert('Please fill out all required fields.');
+  } else {
+    // All required fields are filled, proceed with form submission
+    navigation.navigate('Rooms', { formData, customerId });
   }
-  };
-
-
+};
   
 return (
 <KeyboardDismiss>
@@ -180,8 +176,8 @@ return (
         >
         <TextInput
           style = {styles.form}
-          onChangeText={(text) => setFormData({ ...formData, date: text })}
-          value= {formDate}
+          onChangeText={(text) => handleChange('formDate', text)}
+          value= {formData.formDate}
           fontSize = {25}
           fontFamily = 'interR'
           paddingHorizontal={'5%'}
@@ -196,8 +192,8 @@ return (
         >
         <TextInput
           style = {styles.form}
-          onChangeText={(text) => setFormData({ ...formData, start_time: text })}
-          value= {formStartTime}
+          onChangeText={(text) => handleChange('formStartTime', text)}
+          value= {formData.formStartTime}
           fontSize = {25}
           fontFamily = 'interR'
           paddingHorizontal={'5%'}
@@ -212,8 +208,8 @@ return (
         >
         <TextInput
           style = {styles.form}
-          onChangeText={(text) => setFormData({ ...formData, endTime: text })}
-          value= {formEndTime}
+          onChangeText={(text) => handleChange('formEndTime', text)}
+          value= {formData.formEndTime}
           fontSize = {25}
           fontFamily = 'interR'
           paddingHorizontal={'5%'}
@@ -226,7 +222,7 @@ return (
         <KeyboardDismiss>
         <TextInput
           style = {styles.form}
-          onChangeText={(text) => setFormData({ ...formData, phone_number: text })}
+          onChangeText={(text) => handleChange('numberOfPeople', text)}
           keyboardType="numeric"
           fontSize = {25}
           fontFamily = 'interR'
@@ -237,9 +233,9 @@ return (
       </View>
 
   </View>
-  <TouchableOpacity
+    <TouchableOpacity
     style={styles.button}
-    // onPress={handleSubmit}
+    onPress={handleSubmit}
     >
       <Text
       style={styles.buttonText}

@@ -39,7 +39,7 @@ return (
             <Text style={[styles.buttonText, {color: 'white'}]} >Book now</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button2}>
+        <TouchableOpacity style={styles.button2} onPress={()=>navigation.navigate("SecondForm")}>
             <Text style={[styles.buttonText, { color: Colors.main }]} >Gallery</Text>
         </TouchableOpacity>
       </View>

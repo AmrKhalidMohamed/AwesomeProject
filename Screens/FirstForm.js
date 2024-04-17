@@ -15,7 +15,7 @@ export default function Form() {
     phone_number: 'phone_number',
   });
 
-  const baseUrl = 'https://7e5f-154-178-181-57.ngrok-free.app';
+  const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
 
   const handleSubmit = async () => {
   try{
@@ -42,7 +42,8 @@ export default function Form() {
     // All validations passed, submit the form
     const response = await axios.post(`${baseUrl}/api/customers`, formData);
     console.log('Response:', response.data);
-    navigation.navigate('SecondForm')
+    const customerId = response.data.data.id
+    navigation.navigate('SecondForm', {customerId})
   } catch (error) {
     console.error('Error:', error);
     // Handle error

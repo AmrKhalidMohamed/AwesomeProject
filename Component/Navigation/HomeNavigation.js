@@ -8,8 +8,10 @@ import Location from '../../Screens/Location';
 import InfoScreen from '../../Screens/InfoScreen';
 import FirstForm from '../../Screens/FirstForm';
 import SecondForm from '../../Screens/SecondForm';
+import AvailableRooms from '../../Screens/AvailableRooms';
 import Colors from '../Colors';
 import { View } from 'react-native';
+import RoomDetails from '../../Screens/RoomDetails';
 
 
 
@@ -82,6 +84,8 @@ export default function HomeNavigation() {
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='FirstForm' component={FirstForm} />
       <Stack.Screen name='SecondForm' component={SecondForm} />
+      <Stack.Screen name='Rooms' component={AvailableRooms} />
+      <Stack.Screen name='RoomDetails' component={RoomDetails} />
     </Stack.Navigator>
-  );
+  );``
 }
