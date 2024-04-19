@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet, ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { heightPercentageToDP as hP, widthPercentageToDP as wP } from 'react-native-responsive-screen';
 import Colors from '../Component/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useCustomer } from '../Context/CustomerContext';
+import { useTranslation } from 'react-i18next';
 
 export default function InfoScreen() {
   const navigation = useNavigation();
+  const route = useRoute()
+  const { customerId } = useCustomer();
+  const { t } = useTranslation();
 
+  console.log(customerId)
   return (
     <View style={{ backgroundColor: Colors.black, height: hP("100%"), width: wP("100%"), marginTop: "auto", flex: 1 }}>
       <TouchableOpacity onPress={()=>navigation.goBack()}
@@ -25,8 +31,10 @@ export default function InfoScreen() {
       </TouchableOpacity>
 
       <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur.</Text>
-      <ScrollView>
-        <TouchableOpacity style = {styles.card} onPress={() => navigation.navigate("FirstForm")}>
+      <ScrollView style={{ marginBottom: hP('10%') }}>
+        <TouchableOpacity style = {styles.card}
+        onPress={() => navigation.navigate('FirstForm', 1)}
+        >
         <ImageBackground source={require('../assets/images/card1.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >
@@ -35,12 +43,14 @@ export default function InfoScreen() {
             style={styles.gradient}
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
-          <Text style={styles.cardTitle}>El Malaap 1</Text>
-          <Text style={styles.cardSubTitle}>10 available rooms</Text>
+          <Text style={styles.cardTitle}>{t('elmalaap')} 1</Text>
+          <Text style={styles.cardSubTitle}>10 {t('availableRooms')}</Text>
           </LinearGradient>
         </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.card}>
+        <TouchableOpacity style = {styles.card}
+          onPress={() => navigation.navigate('FirstForm', 2)}
+        >
         <ImageBackground source={require('../assets/images/card2.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >
@@ -49,7 +59,7 @@ export default function InfoScreen() {
             style={styles.gradient}
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
-          <Text style={styles.cardTitle}>El Malaap 2</Text>
+          <Text style={styles.cardTitle}>{t('elmalaap')} 2</Text>
           <Text style={styles.cardSubTitle}>Coming soon</Text>
           </LinearGradient>
         </ImageBackground>

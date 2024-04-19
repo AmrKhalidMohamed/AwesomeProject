@@ -4,6 +4,9 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNavigation from './Component/Navigation/HomeNavigation';
+import { CustomerProvider } from './Context/CustomerContext';
+import { BranchProvider } from './Context/BranchContext';
+import './i18n'
 
 
 
@@ -29,11 +32,15 @@ export default function App() {
 
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <CustomerProvider>
+      <BranchProvider>
+      <View style={styles.container} onLayout={onLayoutRootView}>
           <NavigationContainer>
            <HomeNavigation/>
           </NavigationContainer>
-    </View>
+      </View>
+      </BranchProvider>
+    </CustomerProvider>
   );
 }
 

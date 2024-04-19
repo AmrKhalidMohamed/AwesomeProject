@@ -1,7 +1,7 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app'; 
+const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
 
 const useFetch = (endPoint) => {
   const [data, setData] = useState([]);
@@ -12,15 +12,16 @@ const useFetch = (endPoint) => {
     url: `${baseUrl}/api/${endPoint}`,
     method: 'get',
   };
+
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.request(options);
-      if (endPoint.endsWith('images')){
+      if (endPoint.endsWith('images')) {
         setData(response.data);
-      }else{
+      } else {
         setData(response.data.data);
-      } 
+      }
     } catch (error) {
       setError(error);
       alert('There was an error');
@@ -29,10 +30,15 @@ const useFetch = (endPoint) => {
     }
   };
 
+  const refetch = useCallback(() => {
+    fetchData();
+  }, [fetchData]);
+
   useEffect(() => {
     fetchData();
   }, []);
-  return { data, isLoading, error };
+
+  return { data, isLoading, error, refetch };
 };
 
 export default useFetch;

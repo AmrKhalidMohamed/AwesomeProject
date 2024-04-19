@@ -6,20 +6,28 @@ import { heightPercentageToDP as hP, widthPercentageToDP as wP,} from 'react-nat
 import axios from "axios"
 import { useNavigation, useRoute } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useCustomer } from '../Context/CustomerContext'
+import { useTranslation } from 'react-i18next'
+import { useBranch } from '../Context/BranchContext'
 
 export default function Form() {
   const [date, setDate] = useState(new Date())
   const [formDate, setFormDate] = useState("Date")
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
+  const route = useRoute()
+  const {customerId} = route.params
+  const { setCustomerId } = useCustomer();
+  setCustomerId(customerId);
+  const {t} = useTranslation()
+
+  const { branch } = useBranch()
 
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [formStartTime, setFormStartTime] = useState("Time")
   const [formEndTime, setFormEndTime] = useState("Time")
   const [timeFormNumber, setTimeFormNumber] = useState(1)
-  const route = useRoute()
-  const {customerId} = route.params
   const togglePicker = ()=>{
     setShow (!show)
   }
@@ -157,7 +165,7 @@ return (
     </TouchableOpacity>
 
       <View style={{alignItems: 'center'}}>
-      <Text  style={styles.title}>El Malaap 1</Text>
+      <Text  style={styles.title}>{t('elmalaap')} {branch}</Text>
       <Image style={{position: 'relative',}} source={require('../assets/images/glowLine.png')}/>
       </View>
       
@@ -170,7 +178,7 @@ return (
             onChange= {onChange}
           />
         </View>)}
-        <Text style={styles.formTitle}>Date</Text>
+        <Text style={styles.formTitle}>{t('date')}</Text>
         <Pressable 
         onPress= {() => showMode('date')}
         >
@@ -186,7 +194,7 @@ return (
           onPressIn={() => showMode('date')}
         />
         </Pressable>
-        <Text style={styles.formTitle}>Start time</Text>
+        <Text style={styles.formTitle}>{t('startTime')}</Text>
         <Pressable 
         onPress= {() => showMode('time',1)}
         >
@@ -202,7 +210,7 @@ return (
           onPressIn={() => showMode('time',1)}
         />
         </Pressable>
-        <Text style={styles.formTitle}>End time</Text>
+        <Text style={styles.formTitle}>{t('endTime')}</Text>
         <Pressable 
         onPress= {() => showMode('time',2)}
         >
@@ -218,7 +226,7 @@ return (
           onPressIn={() => showMode('time',2)}
         />
         </Pressable>
-        <Text style={styles.formTitle}>Number of people</Text>
+        <Text style={styles.formTitle}>{t('numberOfPeople')}</Text>
         <KeyboardDismiss>
         <TextInput
           style = {styles.form}
@@ -239,7 +247,7 @@ return (
     >
       <Text
       style={styles.buttonText}
-      >Next</Text>
+      >{t('nextButton')}</Text>
     </TouchableOpacity>  
     
     {show && Platform.OS === 'ios' &&(<View style= {styles.pickerContainer}>
@@ -286,7 +294,7 @@ const styles = StyleSheet.create({
     marginTop: '5%'
   },
   formTitle:{
-    marginLeft: '7%',
+    marginHorizontal: '7%',
     color: 'white',
     fontFamily: 'kohR',
     fontSize: 16,

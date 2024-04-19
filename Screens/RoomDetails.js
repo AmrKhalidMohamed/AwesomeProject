@@ -5,11 +5,13 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import Colors from '../Component/Colors';
 import useFetch from '../hooks/useFetch';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const RoomDetails = ({ route }) => {
   const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
   const navigation = useNavigation();
   const screenWidth = Dimensions.get('window').width;
+  const {t} = useTranslation()
   const { roomId, combinedData, formData, customerId } = route.params;
   const { data: imageData, isLoading: imageIsLoading, error: imageError } = useFetch(`rooms/${roomId}/images`);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -41,7 +43,7 @@ console.log(bookingData)
     try{
       const response = await axios.post(`${baseUrl}/api/bookings`, bookingData);
       console.log('Response:', response.data);
-      navigation.navigate('Home')
+      navigation.navigate('Home', {customerId})
     }catch(error){
       console.error('Error:', error);
     }
@@ -75,7 +77,7 @@ console.log(bookingData)
                   />
                   )}
                   />
-                  <Text style={styles.capacity}>{item.capacity} Person</Text>
+                  <Text style={styles.capacity}>{item.capacity} {t('person')}</Text>
                   <View style={styles.dotContainer}>
                   {imageData.map((_, index) => (
                   <View
@@ -87,7 +89,7 @@ console.log(bookingData)
                   <Text style={styles.description}>{item.description}</Text>
                   <View style={{flexDirection: 'row', marginLeft: '3%', alignItems:'center'}}>
                         <Image source ={require('../assets/images/money.png')} />
-                        <Text style={styles.price}> {item.price} EGP</Text>
+                        <Text style={styles.price}> {item.price} {t('currency')} </Text>
                   </View>
                   <FlatList
                   data={otherRooms}
@@ -100,9 +102,9 @@ console.log(bookingData)
                         style={styles.image}
                   />
                   <View style={styles.cardText}>
-                        <Text style={styles.cardColoredTitle}>Available</Text>
+                        <Text style={styles.cardColoredTitle}>{t('available')}</Text>
                         <Text style={styles.cardTitle}>{item.room_number}</Text>
-                        <Text style={styles.cardSubTitle}>Up to {item.capacity} persons</Text>
+                        <Text style={styles.cardSubTitle}>{t('upTo')} {item.capacity} {t('persons')}</Text>
                   </View>
                   </TouchableOpacity>
                   </View>
@@ -142,7 +144,7 @@ console.log(bookingData)
       >
       <Text
       style={styles.buttonText}
-      >Book</Text>
+      >{t('bookButton')}</Text>
     </TouchableOpacity>
       <Image source={require("../assets/images/Ellipse 2.png")} style={styles.background}/>
     </View>
@@ -242,6 +244,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontFamily: 'interR',
       color: Colors.formStroke,
+      alignSelf: 'flex-start'
     },
     cardColoredTitle: {
       fontSize: 12,

@@ -81,7 +81,7 @@ export default function HomeNavigation() {
       }}
     >
       <Stack.Screen name='WelcomeHome' component={WelcomeHome} />
-      <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='mainHome' component={HomeScreen} />
       <Stack.Screen name='FirstForm' component={FirstForm} />
       <Stack.Screen name='SecondForm' component={SecondForm} />
       <Stack.Screen name='Rooms' component={AvailableRooms} />

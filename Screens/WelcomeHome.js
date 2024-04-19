@@ -3,11 +3,22 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
 import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
-
+import { useTranslation } from 'react-i18next';
 import Colors from '../Component/Colors';
+
+
+
+  
+
 
 export default function WelcomeHome() {
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   // Load custom fonts
   const [loaded] = useFonts({
@@ -22,6 +33,11 @@ export default function WelcomeHome() {
 
 return (
   <View style={styles.viewStyle} >
+     <TouchableOpacity onPress={toggleLanguage} style={styles.languageSwitcher}>
+      <Text style={styles.languageText}>
+        {i18n.language === 'en' ? 'Ar' : 'En'}
+      </Text>
+    </TouchableOpacity>
       
     <View style={{marginTop:hP("4.5")}}>
       <View >
@@ -35,12 +51,12 @@ return (
         <Image source={require("../assets/images/Group 19.png")}/>
       </View>
       <View style = {styles.buttonsView}>
-        <TouchableOpacity onPress={()=>navigation.navigate("Home")} style={styles.button1}>
-            <Text style={[styles.buttonText, {color: 'white'}]} >Book now</Text>
+        <TouchableOpacity onPress={()=>navigation.navigate("mainHome")} style={styles.button1}>
+            <Text style={[styles.buttonText, {color: 'white'}]} >{t('bookNowButton')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button2} onPress={()=>navigation.navigate("SecondForm")}>
-            <Text style={[styles.buttonText, { color: Colors.main }]} >Gallery</Text>
+            <Text style={[styles.buttonText, { color: Colors.main }]} >{t('galleryButton')}</Text>
         </TouchableOpacity>
       </View>
   </View>
@@ -104,5 +120,21 @@ const styles = StyleSheet.create({
     fontSize: hP('4.5%'),
     padding: '.5%',
     fontFamily: 'interB',
+  },
+  languageSwitcher: {
+    backgroundColor: Colors.main,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 300,
+    height: 55,
+    width: 55,
+    position: 'absolute',
+    top: '5%',
+    right: '5%'
+  },
+  languageText: {
+    fontSize: 30,
+    fontFamily: 'interR',
+    color: 'white'
   },
 });

@@ -3,15 +3,16 @@ import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../Component/Colors'
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function Location() {
   const navigation=useNavigation()
-
+  const {t} = useTranslation()
   return (
     <View style = {styles.viewStyle}>
-      <TouchableOpacity onPress={()=>navigation.navigate("welcomeHome")}
+      <TouchableOpacity onPress={()=>navigation.goBack()}
         style={{
         padding: '2.5%',
         borderRadius: 100,
@@ -24,7 +25,11 @@ export default function Location() {
       >
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
       </TouchableOpacity>
-      <Text style={styles.mainTitle}>El Malaab 1</Text>
+      <View style={{alignItems: 'center', position:'absolute', top:'5%',alignSelf:'center'}}>
+      <Text  style={styles.title}>Location</Text>
+      <Image style={{position: 'relative',}} source={require('../assets/images/glowLine.png')}/>
+      </View>
+      <Text style={styles.mainTitle}>{t('elmalaap')} 1</Text>
       <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
       <TouchableOpacity style = {styles.card}>
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
@@ -35,13 +40,17 @@ export default function Location() {
             colors={['transparent', 'rgba(158, 68, 229, .5)']}
             style={styles.gradient}
           >  
-          <Text style={styles.cardTitle}>Open in maps       <Image 
-          source={require('../assets/images/mapIcon.png')}
-          /></Text>
+          
+            <Text style={styles.cardTitle}>{t('openInMaps')}</Text>
+            <Image 
+            source={require('../assets/images/mapIcon.png')}
+            style={{position: 'absolute',right: '5%'}}
+            />
+          
           </LinearGradient>
         </ImageBackground>
       </TouchableOpacity>
-      <Text style={styles.mainTitle}>El Malaab 2</Text>
+      <Text style={styles.mainTitle}>{t('elmalaap')} 2</Text>
       <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
       <TouchableOpacity style = {styles.card}>
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
@@ -52,12 +61,15 @@ export default function Location() {
             colors={['transparent', 'rgba(158, 68, 229, .5)']}
             style={styles.gradient}
           >  
-          <Text style={styles.cardTitle}>Open in maps       <Image 
+          <Text style={styles.cardTitle}>{t('openInMaps')}</Text>
+          <Image 
           source={require('../assets/images/mapIcon.png')}
-          /></Text>
+          style={{position: 'absolute',right: '5%'}}
+          />
           </LinearGradient>
         </ImageBackground>
       </TouchableOpacity>
+      <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage}/>
     </View>
   )
 }
@@ -65,10 +77,16 @@ export default function Location() {
 
 const styles = StyleSheet.create({
   mainTitle: {
+    alignSelf: 'flex-start',
     fontSize: hP('5%'),
     fontFamily: 'koh',
     marginTop:'15%',
     marginHorizontal: '5%',
+    color: 'white',
+  },
+  title: {
+    fontSize: 32,
+    fontFamily: 'kohR',
     color: 'white',
   },
   subTitle: {
@@ -83,6 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black
   },
   card: {
+    flexDirection: 'row',
+    alignContent: 'center',
     justifyContent: 'center',
     width: '90%',
     height: 110,
@@ -96,10 +116,11 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   cardTitle: {
+    position: 'absolute',
+    left: '5%',
     fontFamily: 'interB',
     fontSize: 32,
     color: 'white',
-    marginLeft: '5%',
   },
   gradient: {
     justifyContent: 'center',
@@ -107,5 +128,11 @@ const styles = StyleSheet.create({
     height: '100%',
     position: 'absolute',
     borderRadius: 12
-  }
+  },
+  backgroundImage: {
+    position: "absolute",
+    bottom: '5%',
+    zIndex: -2,
+    width: '65%',
+  },
 })

@@ -5,8 +5,11 @@ import Colors from '../Component/Colors';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import useFetch from '../hooks/useFetch';
+import { useTranslation } from 'react-i18next';
+import { useBranch } from '../Context/BranchContext';
 
 const AvailableRoomsPage = () => {
+  const {t} = useTranslation()
   const navigation=useNavigation()
   const [availableRooms, setAvailableRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +17,8 @@ const AvailableRoomsPage = () => {
   const route = useRoute();
   const { formData, customerId } = route.params;
   const { data: imageData, isLoading: imageIsLoading, error: imageError } = useFetch('images');
+  
+  const { branch } = useBranch()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,12 +36,12 @@ const AvailableRoomsPage = () => {
             return (
               booking.room_id === room.id &&
               !(formData.formEndTime <= booking.start_time || formData.formStartTime >= booking.end_time)
+              //&& branch != room.branch
               // console.log(formData.formStartTime == booking.end_time)
             );
           });
-          
           // Check if the room can accommodate the specified number of people
-          const isRoomAvailable = room.capacity >= formData.numberOfPeople;
+          const isRoomAvailable = room.capacity >= formData.numberOfPeople && branch == room.branch;
           // Return true if there are no overlapping bookings and the room can accommodate the specified number of people
           return overlappingBookings.length === 0 && isRoomAvailable;
         });
@@ -102,7 +107,7 @@ const AvailableRoomsPage = () => {
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
       </TouchableOpacity>
       <View style={{alignItems: 'center', position:'absolute', top:'5%',alignSelf:'center'}}>
-      <Text  style={styles.title}>Available rooms</Text>
+      <Text  style={styles.title}>{t('availableRooms')}</Text>
       <Image style={{position: 'relative',}} source={require('../assets/images/glowLine.png')}/>
       </View>
   <FlatList
@@ -115,9 +120,9 @@ const AvailableRoomsPage = () => {
           style={styles.image}
         />
         <View style={styles.cardText}>
-        <Text style={styles.cardColoredTitle}>Available</Text>
+        <Text style={styles.cardColoredTitle}>{t('available')}</Text>
         <Text style={styles.cardTitle}>{item.room_number}</Text>
-        <Text style={styles.cardSubTitle}>Up to {item.capacity} persons</Text>
+        <Text style={styles.cardSubTitle}>{t('upTo')} {item.capacity} {t('persons')}</Text>
         </View>
       </TouchableOpacity>
       </View>
@@ -176,6 +181,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'interR',
     color: Colors.formStroke,
+    alignSelf: 'flex-start'
   },
   cardColoredTitle: {
     fontSize: 12,

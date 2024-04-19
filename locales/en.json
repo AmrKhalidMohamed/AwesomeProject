@@ -1,0 +1,25 @@
+{
+      "bookNowButton": "Book now",
+      "galleryButton": "Gallery",
+      "elmalaap": "El Malaap",
+      "availableRooms": "Available rooms",
+      "nextButton": "Next",
+      "name": "Name",
+      "phoneNumber": "Phone number",
+      "date": "Date",
+      "startTime": "Start time",
+      "endTime": "End time",
+      "numberOfPeople": "Number of people",
+      "room": "Room",
+      "available": "available",
+      "upTo": "Up to",
+      "persons": "persons",
+      "bookButton": "Book",
+      "currency": "EGP",
+      "person": "Person",
+      "openInMaps": "Open in maps",
+      "yourBookings": "Your Bookings",
+      "noBookings": "No bookings yet pull to refresh",
+      "cancelBooking": "Cancel booking"
+      
+}

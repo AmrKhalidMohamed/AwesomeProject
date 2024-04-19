@@ -4,11 +4,13 @@ import Colors from '../Component/Colors'
 import KeyboardDismiss from '../Component/keyboardDismiss'
 import { heightPercentageToDP as hP, widthPercentageToDP as wP,} from 'react-native-responsive-screen'
 import axios from "axios"
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next'
+import { useBranch } from '../Context/BranchContext'
 
 export default function Form() {
   const navigation=useNavigation()
-
+  const {t} = useTranslation()
   const [formData, setFormData] = useState({
     // Initialize state for form data
     name: 'name',
@@ -16,6 +18,11 @@ export default function Form() {
   });
 
   const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
+  const route = useRoute()
+  const branch = route.params
+
+  const { setBranch } = useBranch();
+  setBranch(branch);
 
   const handleSubmit = async () => {
   try{
@@ -43,6 +50,8 @@ export default function Form() {
     const response = await axios.post(`${baseUrl}/api/customers`, formData);
     console.log('Response:', response.data);
     const customerId = response.data.data.id
+    
+    
     navigation.navigate('SecondForm', {customerId})
   } catch (error) {
     console.error('Error:', error);
@@ -82,12 +91,12 @@ return (
     </TouchableOpacity>
 
       <View style={{alignItems: 'center'}}>
-      <Text  style={styles.title}>El Malaap 1</Text>
+      <Text  style={styles.title}>{t('elmalaap')} {branch}</Text>
       <Image style={{position: 'relative',}} source={require('../assets/images/glowLine.png')}/>
       </View>
       
       <View style={styles.formContainer}>
-        <Text style={styles.formTitle}>Name</Text>
+        <Text style={styles.formTitle}>{t('name')}</Text>
         <TextInput
           style = {styles.form}
           onChangeText={(text) => setFormData({ ...formData, name: text })}
@@ -96,7 +105,7 @@ return (
           paddingHorizontal={'5%'}
           selectionColor= {Colors.main}
         />
-        <Text style={styles.formTitle}>Phone number</Text>
+        <Text style={styles.formTitle}>{t('phoneNumber')}</Text>
         <TextInput
           style = {styles.form}
           onChangeText={(text) => setFormData({ ...formData, phone_number: text })}
@@ -116,7 +125,7 @@ return (
     >
       <Text
       style={styles.buttonText}
-      >Next</Text>
+      >{t('nextButton')}</Text>
     </TouchableOpacity>
 
   <Image source={require("../assets/images/Ellipse 2.png")} style={styles.background}   /> 
@@ -151,7 +160,7 @@ const styles = StyleSheet.create({
     marginTop: '5%'
   },
   formTitle:{
-    marginLeft: '7%',
+    marginHorizontal: '7%',
     color: 'white',
     fontFamily: 'kohR',
     fontSize: 16,
