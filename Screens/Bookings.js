@@ -13,27 +13,7 @@ const { data, isLoading, error }=useFetch("bookings")
 
 
 
-const handleDelete = async () => {
-  try {
-    const response = await axios('https://fbfb-45-242-16-109.ngrok-free.app/api/bookings/bookings_id', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-     
-      },
-    });
 
-    if (!response.ok) {
-      throw new Error('Failed to delete element');
-    }
-
-    
-    Alert.alert('Success', 'Element deleted successfully');
-  } catch (error) {
-    console.log(error)
-    Alert.alert('Error', error.message);
-  }
-};
 
 
   return (
@@ -62,7 +42,7 @@ const handleDelete = async () => {
                 <Text  style={styles.textstyle}> Start Time :  {item.booking_date}</Text>
                 <Text  style={styles.textstyle}> End Time :  {item.booking_date}</Text>
                  <TouchableOpacity 
-                 onPress={handleDelete}
+                 
                  
                  style={{alignSelf:"center",padding:10, borderColor:"white",borderWidth:"1",width:wP(50),borderRadius:100,backgroundColor:"white" }}  >
                   <Text  style={{fontSize:hP(2),textAlign:"center"}}>Cancel Booking</Text>

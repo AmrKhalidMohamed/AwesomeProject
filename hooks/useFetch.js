@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'https://fbfb-45-242-16-109.ngrok-free.app'; 
+const baseUrl = 'https://8ec9-45-242-84-238.ngrok-free.app'; 
 
 const useFetch = (endPoint) => {
   const [data, setData] = useState([]);

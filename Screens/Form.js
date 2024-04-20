@@ -15,11 +15,11 @@ export default function Form() {
     phone_number: 'phone_number',
   });
 
-  const baseUrl = 'https://832c-45-242-16-109.ngrok-free.app';
+  const baseUrl = 'https://8ec9-45-242-84-238.ngrok-free.app';
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('https://832c-45-242-16-109.ngrok-free.app/api/customers', formData);
+      const response = await axios.post('https://8ec9-45-242-84-238.ngrok-free.app/api/customers', formData);
       console.log('Response:', response.data);
       // Handle success
     } catch (error) {

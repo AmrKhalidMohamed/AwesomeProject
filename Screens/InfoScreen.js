@@ -24,7 +24,9 @@ export default function InfoScreen() {
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur.</Text>
+      <Text style={styles.title}>Book Your private Room .
+      2 Branches only in nasr city
+       </Text>
       <ScrollView>
         <TouchableOpacity style = {styles.card} onPress={() => navigation.navigate("FirstForm")}>
         <ImageBackground source={require('../assets/images/card1.jpg')} style={styles.cardImage}
@@ -35,8 +37,8 @@ export default function InfoScreen() {
             style={styles.gradient}
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
-          <Text style={styles.cardTitle}>El Malaap 1</Text>
-          <Text style={styles.cardSubTitle}>10 available rooms</Text>
+          <Text style={styles.cardTitle}>Al Malaap 1</Text>
+          <Text style={styles.cardSubTitle}>5  Rooms</Text>
           </LinearGradient>
         </ImageBackground>
         </TouchableOpacity>
@@ -49,8 +51,8 @@ export default function InfoScreen() {
             style={styles.gradient}
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
-          <Text style={styles.cardTitle}>El Malaap 2</Text>
-          <Text style={styles.cardSubTitle}>Coming soon</Text>
+          <Text style={styles.cardTitle}>Al Malaap 2</Text>
+          <Text style={styles.cardSubTitle}>11 Rooms</Text>
           </LinearGradient>
         </ImageBackground>
         </TouchableOpacity>

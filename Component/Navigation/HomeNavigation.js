@@ -10,6 +10,8 @@ import FirstForm from '../../Screens/FirstForm';
 import SecondForm from '../../Screens/SecondForm';
 import Colors from '../Colors';
 import { View } from 'react-native';
+import Map from '../../Screens/Map';
+import Map2 from '../../Screens/Map2';
 
 
 
@@ -82,6 +84,8 @@ export default function HomeNavigation() {
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='FirstForm' component={FirstForm} />
       <Stack.Screen name='SecondForm' component={SecondForm} />
+      <Stack.Screen name='map' component={Map} />
+      <Stack.Screen name='MAP' component={Map2}  />
     </Stack.Navigator>
   );
 }

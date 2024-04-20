@@ -5,12 +5,13 @@ import Colors from '../Component/Colors'
 import { LinearGradient } from 'expo-linear-gradient';
 
 
+
 export default function Location() {
-  const navigation=useNavigation()
+  const navigation = useNavigation();
 
   return (
     <View style = {styles.viewStyle}>
-      <TouchableOpacity onPress={()=>navigation.navigate("welcomeHome")}
+      <TouchableOpacity onPress={()=>navigation.goBack("")}
         style={{
         padding: '2.5%',
         borderRadius: 100,
@@ -18,14 +19,40 @@ export default function Location() {
         marginHorizontal: '4%',
         marginTop: '10%',
         backgroundColor: Colors.main,
-        alignItems:"center"
-        }}
+        alignItems:"center"} 
+      }
       >
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
+      
       </TouchableOpacity>
-      <Text style={styles.mainTitle}>El Malaab 1</Text>
-      <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-      <TouchableOpacity style = {styles.card}>
+      <Text style={styles.mainTitle}>Al Malaab 1</Text>
+      <Text style={styles.subTitle}>Fareek Awal Ali Amer, Al Manteqah as Sadesah, Nasr City, Cairo Governorate</Text>
+      
+      <TouchableOpacity style = {styles.card}
+      onPress={()=>navigation.navigate("map")}
+      >
+        
+        <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
+          imageStyle={{ borderRadius: 12}}
+        >
+
+          <LinearGradient
+            // Background Linear Gradient
+            colors={['transparent', 'rgba(158, 68, 229, .5)']}
+            style={styles.gradient}
+          >  
+          <Text style={styles.cardTitle}>Open in maps       <Image 
+          source={require('../assets/images/mapIcon.png')}
+          /></Text>
+          </LinearGradient>
+        </ImageBackground>
+      </TouchableOpacity>
+      
+      <Text style={styles.mainTitle}>Al Malaab 2</Text>
+      <Text style={styles.subTitle}>Ahmed Housny, Al Manteqah Al Oula, Nasr City, Cairo Governorate 4450134.</Text>
+      <TouchableOpacity style = {styles.card}
+      onPress={()=>navigation.navigate("MAP")}
+      >
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >
@@ -40,23 +67,7 @@ export default function Location() {
           </LinearGradient>
         </ImageBackground>
       </TouchableOpacity>
-      <Text style={styles.mainTitle}>El Malaab 2</Text>
-      <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-      <TouchableOpacity style = {styles.card}>
-        <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
-          imageStyle={{ borderRadius: 12}}
-        >
-          <LinearGradient
-            // Background Linear Gradient
-            colors={['transparent', 'rgba(158, 68, 229, .5)']}
-            style={styles.gradient}
-          >  
-          <Text style={styles.cardTitle}>Open in maps       <Image 
-          source={require('../assets/images/mapIcon.png')}
-          /></Text>
-          </LinearGradient>
-        </ImageBackground>
-      </TouchableOpacity>
+      
     </View>
   )
 }
