@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import WelcomeHome from '../../Screens/WelcomeHome';
+import Gallery from '../../Screens/Gallery';
 import Bookings from '../../Screens/Bookings';
 import Location from '../../Screens/Location';
 import InfoScreen from '../../Screens/InfoScreen';
@@ -82,6 +83,7 @@ export default function HomeNavigation() {
     >
       <Stack.Screen name='WelcomeHome' component={WelcomeHome} />
       <Stack.Screen name='mainHome' component={HomeScreen} />
+      <Stack.Screen name='Gallery' component={Gallery} />
       <Stack.Screen name='FirstForm' component={FirstForm} />
       <Stack.Screen name='SecondForm' component={SecondForm} />
       <Stack.Screen name='Rooms' component={AvailableRooms} />

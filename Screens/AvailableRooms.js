@@ -13,7 +13,7 @@ const AvailableRoomsPage = () => {
   const navigation=useNavigation()
   const [availableRooms, setAvailableRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
+  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
   const route = useRoute();
   const { formData, customerId } = route.params;
   const { data: imageData, isLoading: imageIsLoading, error: imageError } = useFetch('images');

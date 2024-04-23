@@ -6,12 +6,13 @@ import Colors from '../Component/Colors';
 import useFetch from '../hooks/useFetch';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import '../i18n'
 
 const RoomDetails = ({ route }) => {
-  const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
+  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
   const navigation = useNavigation();
   const screenWidth = Dimensions.get('window').width;
-  const {t} = useTranslation()
+  const {t, i18n} = useTranslation()
   const { roomId, combinedData, formData, customerId } = route.params;
   const { data: imageData, isLoading: imageIsLoading, error: imageError } = useFetch(`rooms/${roomId}/images`);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -52,6 +53,7 @@ console.log(bookingData)
 
   const [selectedRoomData, setSelectedRoomData] = useState([]);
 
+
   useEffect(() => {
     const filteredData = combinedData.filter(dataItem => dataItem.id === roomId);
     setSelectedRoomData(filteredData);
@@ -59,60 +61,63 @@ console.log(bookingData)
   const otherRooms = combinedData.filter(room => room.id !== roomId)
 
   const renderItem = ({ item }) => {
-      return(
-            <View>
-                  <FlatList
-                  data={item.images}
-                  horizontal
-                  pagingEnabled
-                  onViewableItemsChanged = {onViewableItemsChanged}
-                  viewabilityConfig={{
-                        viewAreaCoveragePercentThreshold: 50,
-                      }}
-                    showsHorizontalScrollIndicator={false}
-                  renderItem={({ item: image }) => (
-                  <Image
+    const displayDescription = i18n.language === 'ar' ? item.ArDescription : item.description;
+    return (
+        <View>
+            <FlatList
+                data={item.images}
+                horizontal
+                pagingEnabled
+                onViewableItemsChanged={onViewableItemsChanged}
+                viewabilityConfig={{
+                    viewAreaCoveragePercentThreshold: 50,
+                }}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item: image }) => (
+                    <Image
                         source={{ uri: `${baseUrl}/storage/${image.image_path.substring(7)}` }}
-                        style={{ width: screenWidth, height: 233}}
-                  />
-                  )}
-                  />
-                  <Text style={styles.capacity}>{item.capacity} {t('person')}</Text>
-                  <View style={styles.dotContainer}>
-                  {imageData.map((_, index) => (
-                  <View
+                        style={{ width: screenWidth, height: 233 }}
+                    />
+                )}
+            />
+            <Text style={styles.capacity}>{item.capacity} {t('person')}</Text>
+            <View style={styles.dotContainer}>
+                {imageData.map((_, index) => (
+                    <View
                         key={index}
                         style={[styles.dot, index === selectedIndex ? styles.selectedDot : {}]}
-                  />
-                  ))}
-                  </View>
-                  <Text style={styles.description}>{item.description}</Text>
-                  <View style={{flexDirection: 'row', marginLeft: '3%', alignItems:'center'}}>
-                        <Image source ={require('../assets/images/money.png')} />
-                        <Text style={styles.price}> {item.price} {t('currency')} </Text>
-                  </View>
-                  <FlatList
-                  data={otherRooms}
-                  scrollEnabled = {false}
-                  renderItem={({ item }) => (
-                  <View style={styles.cardContainer}>
-                  <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('RoomDetails', { roomId: item.id, combinedData })}>
-                  <Image
-                        source={{ uri: `${baseUrl}/storage/${item.images[0].image_path.substring(7)}` }}
-                        style={styles.image}
-                  />
-                  <View style={styles.cardText}>
-                        <Text style={styles.cardColoredTitle}>{t('available')}</Text>
-                        <Text style={styles.cardTitle}>{item.room_number}</Text>
-                        <Text style={styles.cardSubTitle}>{t('upTo')} {item.capacity} {t('persons')}</Text>
-                  </View>
-                  </TouchableOpacity>
-                  </View>
-                  )}
-                  />
+                    />
+                ))}
             </View>
-      )
-  }
+            <Text style={styles.description}>{displayDescription}</Text>
+            <View style={{ flexDirection: 'row', marginLeft: '3%', alignItems: 'center' }}>
+                <Image source={require('../assets/images/money.png')} />
+                <Text style={styles.price}> {item.price} {t('currency')} </Text>
+            </View>
+            <FlatList
+                data={otherRooms}
+                scrollEnabled={false}
+                renderItem={({ item }) => (
+                    <View style={styles.cardContainer}>
+                        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('RoomDetails', { roomId: item.id, combinedData })}>
+                            <Image
+                                source={{ uri: `${baseUrl}/storage/${item.images[0].image_path.substring(7)}` }}
+                                style={styles.image}
+                            />
+                            <View style={styles.cardText}>
+                                <Text style={styles.cardColoredTitle}>{t('available')}</Text>
+                                <Text style={styles.cardTitle}>{item.room_number}</Text>
+                                <Text style={styles.cardSubTitle}>{t('upTo')} {item.capacity} {t('persons')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            />
+        </View>
+    )
+}
+
+  console.log(selectedRoomData)
 
   return (
     <View style={styles.viewStyle}>
@@ -187,6 +192,7 @@ const styles = StyleSheet.create({
       width: '65%',
   },
   description: {
+      justifyContent: 'flex-start',
       fontFamily: 'kohR',
       fontSize: 20,
       color: 'white',

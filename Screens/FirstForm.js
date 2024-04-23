@@ -17,7 +17,7 @@ export default function Form() {
     phone_number: 'phone_number',
   });
 
-  const baseUrl = 'https://dffd-102-43-145-164.ngrok-free.app';
+  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
   const route = useRoute()
   const branch = route.params
 
@@ -26,25 +26,25 @@ export default function Form() {
 
   const handleSubmit = async () => {
   try{
-    // if (!formData.name.trim()) {
-    //   alert('Please enter your name.');
-    //   return;
-    // }
+    if (!formData.name.trim()) {
+      alert('Please enter your name.');
+      return;
+    }
 
-    // if (!formData.phone_number.trim()) {
-    //   alert('Please enter your phone number.');
-    //   return;
-    // }
+    if (!formData.phone_number.trim()) {
+      alert('Please enter your phone number.');
+      return;
+    }
 
-    // if (!/^\d+$/.test(formData.phone_number.trim())) {
-    //   alert('Please enter a valid phone number.');
-    //   return;
-    // }
+    if (!/^\d+$/.test(formData.phone_number.trim())) {
+      alert('Please enter a valid phone number.');
+      return;
+    }
 
-    // if (formData.phone_number.trim().length < 10 || formData.phone_number.trim().length > 12) {
-    //   alert('Please enter a valid number.');
-    //   return;
-    // }
+    if (formData.phone_number.trim().length < 10 || formData.phone_number.trim().length > 12) {
+      alert('Please enter a valid number.');
+      return;
+    }
 
     // All validations passed, submit the form
     const response = await axios.post(`${baseUrl}/api/customers`, formData);
