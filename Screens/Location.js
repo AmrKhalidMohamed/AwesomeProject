@@ -20,21 +20,23 @@ export default function Location() {
         marginHorizontal: '4%',
         marginTop: '10%',
         backgroundColor: Colors.main,
-        alignItems:"center"
-        }}
+        alignItems:"center"} 
+      }
       >
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
+      
       </TouchableOpacity>
-      <View style={{alignItems: 'center', position:'absolute', top:'5%',alignSelf:'center'}}>
-      <Text  style={styles.title}>Location</Text>
-      <Image style={{position: 'relative',}} source={require('../assets/images/glowLine.png')}/>
-      </View>
-      <Text style={styles.mainTitle}>{t('elmalaap')} 1</Text>
-      <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-      <TouchableOpacity style = {styles.card}>
+      <Text style={styles.mainTitle}>Al Malaab 1</Text>
+      <Text style={styles.subTitle}>Fareek Awal Ali Amer, Al Manteqah as Sadesah, Nasr City, Cairo Governorate</Text>
+      
+      <TouchableOpacity style = {styles.card}
+      onPress={()=>navigation.navigate("map")}
+      >
+        
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >
+
           <LinearGradient
             // Background Linear Gradient
             colors={['transparent', 'rgba(158, 68, 229, .5)']}

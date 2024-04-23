@@ -41,8 +41,8 @@ return (
       
     <View style={{marginTop:hP("4.5")}}>
       <View >
-        <Text style={styles.title} >Lorem ipsum dolor</Text>
-        <Text style={styles.subtitle} >Lorem ipsum dolor sit amet consectetur.</Text>
+        <Text style={styles.title} >AL malaaPlayStation Cafe</Text>
+        <Text style={styles.subtitle} >Private Rooms , Video games , Card Games and more...</Text>
       </View>
 
       <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage}   /> 
@@ -71,14 +71,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#ffffff',
-    fontSize: hP('5%'),
+    fontSize: hP('3%'),
     fontFamily: 'koh',
     marginTop:'15%',
     marginHorizontal: '5%',
+    fontWeight:"bold"
   },
   subtitle: {
     color: '#ffffff',
-    fontSize: hP('2.5%'),
+    fontSize: hP('3%'),
     fontFamily: 'kohR',
     marginHorizontal: '5%',
   },
