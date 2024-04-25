@@ -1,15 +1,24 @@
-import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
+import React from 'react';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground, Linking, Platform } from 'react-native';
 import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
-import Colors from '../Component/Colors'
+import Colors from '../Component/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 
-
-
 export default function Location() {
-  const navigation=useNavigation()
-  const {t} = useTranslation()
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+
+  const openMaps = (latitude, longitude) => {
+    const url = Platform.select({
+      ios: `https://maps.apple.com/?q=${latitude},${longitude}`,
+      android: `https://maps.google.com/?q=${latitude},${longitude}`,
+    });
+
+    Linking.openURL(url);
+  };
+
   return (
     <View style = {styles.viewStyle}>
       <TouchableOpacity onPress={()=>navigation.goBack()}
@@ -26,11 +35,11 @@ export default function Location() {
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
       
       </TouchableOpacity>
-      <Text style={styles.mainTitle}>Al Malaab 1</Text>
-      <Text style={styles.subTitle}>Fareek Awal Ali Amer, Al Manteqah as Sadesah, Nasr City, Cairo Governorate</Text>
+      <Text style={styles.mainTitle}>{t('elmalaap')} 1</Text>
+      <Text style={styles.subTitle}>{t('location1')}</Text>
       
       <TouchableOpacity style = {styles.card}
-      onPress={()=>navigation.navigate("map")}
+      onPress={() => openMaps(30.06162291222803, 31.34002381156385)}
       >
         
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
@@ -53,8 +62,11 @@ export default function Location() {
         </ImageBackground>
       </TouchableOpacity>
       <Text style={styles.mainTitle}>{t('elmalaap')} 2</Text>
-      <Text style={styles.subTitle}>Lorem ipsum dolor sit amet consectetur.</Text>
-      <TouchableOpacity style = {styles.card}>
+      <Text style={styles.subTitle}>{t('location2')}</Text>
+      <TouchableOpacity 
+      style = {styles.card}
+      onPress={() => openMaps(30.06243420348924, 31.32874284220168)}
+      >
         <ImageBackground source={require('../assets/images/map.jpg')} style={styles.cardImage}
           imageStyle={{ borderRadius: 12}}
         >

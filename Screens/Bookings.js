@@ -20,7 +20,7 @@ export default function Bookings() {
   
   const handleDelete = async (bookingId) => {
     try {
-      const response = await axios.delete(`https://d65e-156-196-128-6.ngrok-free.app/api/bookings/${bookingId}`, {
+      const response = await axios.delete(`https://almalaab.fun/api/bookings/${bookingId}`, {
         headers: {
           'Content-Type': 'application/json',
         },

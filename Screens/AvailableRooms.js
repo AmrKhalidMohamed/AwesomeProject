@@ -13,7 +13,7 @@ const AvailableRoomsPage = () => {
   const navigation=useNavigation()
   const [availableRooms, setAvailableRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
+  const baseUrl = 'https://almalaab.fun';
   const route = useRoute();
   const { formData, customerId } = route.params;
   const { data: imageData, isLoading: imageIsLoading, error: imageError } = useFetch('images');
@@ -116,7 +116,7 @@ const AvailableRoomsPage = () => {
       <View style={styles.cardContainer}>
         <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('RoomDetails', { roomId: item.id, combinedData, formData, customerId})}>
         <Image
-          source={{ uri: `${baseUrl}/storage/${item.images[0].image_path.substring(7)}` }}
+          source={{ uri: `${baseUrl}/storage/app/${item.images[0].image_path}` }}
           style={styles.image}
         />
         <View style={styles.cardText}>

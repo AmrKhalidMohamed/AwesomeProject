@@ -15,9 +15,17 @@ export default function WelcomeHome() {
   const navigation = useNavigation();
   const { t, i18n } = useTranslation();
 
+  const [toggle, setToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    setToggle(true);
+  }, []);
+
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
+    i18n.changeLanguage(newLang).then(() => {
+      setToggle(!toggle);
+    });
   };
 
   // Load custom fonts
@@ -41,8 +49,8 @@ return (
       
     <View style={{marginTop:hP("4.5")}}>
       <View >
-        <Text style={styles.title} >AL malaaPlayStation Cafe</Text>
-        <Text style={styles.subtitle} >Private Rooms , Video games , Card Games and more...</Text>
+        <Text style={styles.title} >{t('welcomeTitle')}</Text>
+        <Text style={styles.subtitle} >{t('welcomeSubTitle')}</Text>
       </View>
 
       <Image source={require("../assets/images/Ellipse 2.png")} style={styles.backgroundImage}   /> 
@@ -71,15 +79,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#ffffff',
-    fontSize: hP('3%'),
+    fontSize: hP('5%'),
     fontFamily: 'koh',
     marginTop:'15%',
     marginHorizontal: '5%',
-    fontWeight:"bold"
   },
   subtitle: {
     color: '#ffffff',
-    fontSize: hP('3%'),
+    fontSize: hP('2.5%'),
     fontFamily: 'kohR',
     marginHorizontal: '5%',
   },
@@ -131,7 +138,8 @@ const styles = StyleSheet.create({
     width: 55,
     position: 'absolute',
     top: '5%',
-    right: '5%'
+    right: '5%',
+    zIndex: 100,
   },
   languageText: {
     fontSize: 30,

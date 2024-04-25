@@ -1,7 +1,7 @@
 {
       "bookNowButton": "Book now",
       "galleryButton": "Gallery",
-      "elmalaap": "El Malaap",
+      "elmalaap": "Al Malaap",
       "availableRooms": "Available rooms",
       "nextButton": "Next",
       "name": "Name",
@@ -20,6 +20,11 @@
       "openInMaps": "Open in maps",
       "yourBookings": "Your Bookings",
       "noBookings": "No bookings yet pull to refresh",
-      "cancelBooking": "Cancel booking"
-      
+      "cancelBooking": "Cancel booking",
+      "homeText": "Book according to your preference at any of our branches in Nasr City",
+      "welcomeTitle": "Al Malaab PlayStation cafe",
+      "welcomeSubTitle": "Video games, card games, and entertainment activities.",
+      "location1": "13 Elfareek Ali Amer st. - Makram Obaid - Nasr City. ",
+      "location2": "29 Ahmed Hosny st. - Near by Genaina Mall - Nasr City",
+      "Discover": "Discover"
 }

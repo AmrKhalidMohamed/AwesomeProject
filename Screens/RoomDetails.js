@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import '../i18n'
 
 const RoomDetails = ({ route }) => {
-  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
+  const baseUrl = 'https://almalaab.fun';
   const navigation = useNavigation();
   const screenWidth = Dimensions.get('window').width;
   const {t, i18n} = useTranslation()
@@ -75,7 +75,7 @@ console.log(bookingData)
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item: image }) => (
                     <Image
-                        source={{ uri: `${baseUrl}/storage/${image.image_path.substring(7)}` }}
+                        source={{ uri: `${baseUrl}/storage/app/${image.image_path}` }}
                         style={{ width: screenWidth, height: 233 }}
                     />
                 )}
@@ -101,7 +101,7 @@ console.log(bookingData)
                     <View style={styles.cardContainer}>
                         <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('RoomDetails', { roomId: item.id, combinedData })}>
                             <Image
-                                source={{ uri: `${baseUrl}/storage/${item.images[0].image_path.substring(7)}` }}
+                                source={{ uri: `${baseUrl}/storage/app/${item.images[0].image_path}` }}
                                 style={styles.image}
                             />
                             <View style={styles.cardText}>

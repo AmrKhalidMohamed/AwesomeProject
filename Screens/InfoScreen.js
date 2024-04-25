@@ -30,7 +30,7 @@ export default function InfoScreen() {
       <Image source={require("../assets/images/Arrow 1.png")} style = {{width:hP('3%'),height:hP('3%')}} />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur.</Text>
+      <Text style={styles.title}>{t('homeText')}</Text>
       <ScrollView style={{ marginBottom: hP('10%') }}>
         <TouchableOpacity style = {styles.card}
         onPress={() => navigation.navigate('FirstForm', 1)}
@@ -44,7 +44,7 @@ export default function InfoScreen() {
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
           <Text style={styles.cardTitle}>{t('elmalaap')} 1</Text>
-          <Text style={styles.cardSubTitle}>10 {t('availableRooms')}</Text>
+          <Text style={styles.cardSubTitle}>5 {t('availableRooms')}</Text>
           </LinearGradient>
         </ImageBackground>
         </TouchableOpacity>
@@ -60,7 +60,7 @@ export default function InfoScreen() {
           >
           <Image source={require('../assets/images/dots.png')} style={{position: 'absolute',right:'5%',bottom:'35%'}}/>
           <Text style={styles.cardTitle}>{t('elmalaap')} 2</Text>
-          <Text style={styles.cardSubTitle}>Coming soon</Text>
+          <Text style={styles.cardSubTitle}>11 {t('availableRooms')}</Text>
           </LinearGradient>
         </ImageBackground>
         </TouchableOpacity>
@@ -74,7 +74,7 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
   title: {
     color: "#ffff",
-    fontSize: hP('3.5%'),
+    fontSize: hP('3%'),
     fontFamily: "kohR",
     marginHorizontal: "5%",
     marginVertical: "4%"

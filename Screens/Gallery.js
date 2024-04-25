@@ -4,13 +4,15 @@ import { heightPercentageToDP as hP } from 'react-native-responsive-screen';
 import Colors from '../Component/Colors';
 import { useNavigation } from '@react-navigation/native';
 import useFetch from '../hooks/useFetch';
+import { useTranslation } from 'react-i18next';
 
 const Gallery = () => {
   const navigation = useNavigation();
-  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
+  const baseUrl = 'https://almalaab.fun';
   const screenWidth = Dimensions.get('window').width;
   const { data, isLoading, error } = useFetch('images');
   const [shuffledData, setShuffledData] = useState([]);
+  const {t} = useTranslation()
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -37,7 +39,7 @@ const Gallery = () => {
         <Image source={require('../assets/images/Arrow 1.png')} style={{ width: hP('3%'), height: hP('3%') }} />
       </TouchableOpacity>
       <View style={{ alignItems: 'center', position: 'absolute', top: '5%', alignSelf: 'center' }}>
-        <Text style={styles.title}>Discover</Text>
+        <Text style={styles.title}>{t('Discover')}</Text>
         <Image style={{ position: 'relative' }} source={require('../assets/images/glowLine.png')} />
       </View>
       <FlatList
@@ -47,7 +49,7 @@ const Gallery = () => {
         renderItem={({ item }) => (
           <View>
             <Image
-              source={{ uri: `${baseUrl}/storage/${item.image_path.substring(7)}` }}
+              source={{ uri: `${baseUrl}/storage/app/${item.image_path}` }}
               style={{ width: screenWidth / 2, height: screenWidth / 2, marginVertical: 2.5, marginRight: 5 }}
             />
           </View>

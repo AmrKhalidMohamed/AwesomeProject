@@ -17,7 +17,7 @@ export default function Form() {
     phone_number: 'phone_number',
   });
 
-  const baseUrl = 'https://d65e-156-196-128-6.ngrok-free.app';
+  const baseUrl = 'https://almalaab.fun';
   const route = useRoute()
   const branch = route.params
 
