@@ -1,44 +1,40 @@
 {
   "expo": {
-    "name": "AwesomeProject",
+    "name": "Al Malaab",
     "slug": "AwesomeProject",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": ["path/to/file.ttf"]
-        }
-      ]
-    ],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#111111"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "infoPlist": {
-        "NSAppTransportSecurity": {
-          "NSAllowsArbitraryLoads": true
-        }
-      }
+      "bundleIdentifier": "com.amrkfawzy.AwesomeProject"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+      "package": "com.amrkfawzy.AwesomeProject",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-   
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5a539daf-d6bf-48d4-a9b0-b14558a1a29d"
+      }
+    },
+    "owner": "amrkfawzy",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
